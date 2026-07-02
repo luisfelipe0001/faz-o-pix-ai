@@ -1,0 +1,36 @@
+-- Inserir tipos de pagamento padrão para cada usuário
+-- IMPORTANTE: Execute isso APÓS criar usuários no app
+-- Este script insere os tipos padrão que estarão disponíveis globalmente
+
+-- Tipos de Pagamento Padrão (será replicado para cada usuário)
+-- Para adicionar tipos padrão globais, descomente e customize abaixo:
+
+-- INSERT INTO tipos_pagamento (id, user_id, nome, created_at, updated_at)
+-- SELECT
+--   gen_random_uuid(),
+--   '{{ USER_ID }}',
+--   tipo_nome,
+--   NOW(),
+--   NOW()
+-- FROM (
+--   VALUES
+--     ('Cartão Crédito'),
+--     ('Cartão Débito'),
+--     ('PIX'),
+--     ('Dinheiro'),
+--     ('Empréstimo Pessoal')
+-- ) AS tipos(tipo_nome)
+-- WHERE NOT EXISTS (
+--   SELECT 1 FROM tipos_pagamento
+--   WHERE user_id = '{{ USER_ID }}' AND nome = tipo_nome
+-- );
+
+-- Alternativa: inserir manualmente para um usuário específico
+-- Substitua {{ USER_ID }} pelo ID real do usuário
+--
+-- INSERT INTO tipos_pagamento (id, user_id, nome, created_at, updated_at) VALUES
+-- (gen_random_uuid(), '{{ USER_ID }}', 'Cartão Crédito', NOW(), NOW()),
+-- (gen_random_uuid(), '{{ USER_ID }}', 'Cartão Débito', NOW(), NOW()),
+-- (gen_random_uuid(), '{{ USER_ID }}', 'PIX', NOW(), NOW()),
+-- (gen_random_uuid(), '{{ USER_ID }}', 'Dinheiro', NOW(), NOW()),
+-- (gen_random_uuid(), '{{ USER_ID }}', 'Empréstimo Pessoal', NOW(), NOW());
